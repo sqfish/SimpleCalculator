@@ -28,7 +28,7 @@ namespace Calculator
             Terms[0] = whitespace.Replace(Terms[0], "");
             Terms[1] = whitespace.Replace(Terms[1], "");
             Operator = _operators.Match(input).ToString();
-            Expression = Terms[0] + Operator + Terms[1];
+            Expression = Terms[0] + " " + Operator + " " +Terms[1];
         }
 
         public bool ValidateInput(string input)
