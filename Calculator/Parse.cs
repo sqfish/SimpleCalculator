@@ -10,17 +10,38 @@ namespace Calculator
 {
     public class Parse
     {
-        public string ParsedData;
+        //private string _operators = @"(?!\d\b)(\+|-|*|/){1}";
+        public Regex _operators = new Regex(@"(?<=\b\d+\b\s*)[-+*/]");
+        public string Expression;
         public string[] Terms;
-        public char Operator;
+        public string Operator;
+
         public void ParseInput(string input)
         {
+            if(!ValidateInput(input))
+            {
+                throw new FormatException();
+            }
             string output = input.ToLower();
             Regex whitespace = new Regex(@"\s");
-            output = whitespace.Replace(output, "");
-            ParsedData = output;
-            Terms = new string[] { output.Substring(0, 1), output.Substring(2, 1) };
-            Operator = output[1];
+            Terms = _operators.Split(input);
+            Terms[0] = whitespace.Replace(Terms[0], "");
+            Terms[1] = whitespace.Replace(Terms[1], "");
+            Operator = _operators.Match(input).ToString();
+            Expression = Terms[0] + Operator + Terms[1];
+        }
+
+        public bool ValidateInput(string input)
+        {
+            Regex invalidSign = new Regex(@"(?<!\d\s*)[-+]\s+\d");
+            MatchCollection invalidChars = invalidSign.Matches(input);
+            int count = invalidChars.Count;
+            bool valid = true;
+            if (count > 0)
+            {
+                valid = false;
+            }
+            return valid;
         }
     }
 }
