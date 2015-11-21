@@ -57,6 +57,7 @@
     <Compile Include="ParseTest.cs" />
     <Compile Include="EvaluateTest.cs" />
     <Compile Include="StackTest.cs" />
+    <Compile Include="ConstantTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Calculator\Calculator.csproj">

@@ -16,11 +16,11 @@ namespace CalculatorTests
         }
 
         [TestMethod]
-        public void EnsureICanRemoveWhiteSpace()
+        public void EnsureICanRemoveInappropriateWhiteSpace()
         {
             Parse aParse = new Parse();
-            aParse.ParseInput("8          2     +23210 7");
-            string expected = "82+232107";
+            aParse.ParseInput("8          2     +23210 7     ");
+            string expected = "82 + 232107";
             Assert.AreEqual(expected, aParse.Expression);
         }
 
