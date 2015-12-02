@@ -10,7 +10,8 @@ namespace CalculatorTests
         [TestMethod]
         public void EnsureICanCreateInstance()
         {
-            Stack stack = new Stack(null, null);
+            Stack stack = new Stack();
+            stack.Update(null, null);
             Assert.IsNotNull(stack);
         }
 
@@ -18,7 +19,8 @@ namespace CalculatorTests
         public void EnsureICanManuallyStoreLastIn()
         {
             string input = "8 * -2";
-            Stack stack = new Stack(input, null);
+            Stack stack = new Stack();
+            stack.Update(input, null);
             var actual = stack.LastIn;
             Assert.AreEqual(input, actual);
         }
@@ -27,7 +29,8 @@ namespace CalculatorTests
         public void EnsureICanManuallyStoreLastOut()
         {
             string result = "-12";
-            Stack stack = new Stack(null, result);
+            Stack stack = new Stack();
+            stack.Update(null, result);
             var actual = stack.LastOut;
             Assert.AreEqual(result, actual);
         }
@@ -40,7 +43,8 @@ namespace CalculatorTests
         public void EnsureEvaluateCanReturnLastIn()
         {
             string expected = "-8 * 9";
-            Evaluate evaluate = new Evaluate(expected);
+            Evaluate evaluate = new Evaluate();
+            evaluate.Input(expected);
             string actual = evaluate.LastIn;
             Assert.AreEqual(expected, actual);
         }
@@ -49,7 +53,8 @@ namespace CalculatorTests
         public void EnsureEvaluateCanReturnLastOut()
         {
             string input = "-8 * 9";
-            Evaluate evaluate = new Evaluate(input);
+            Evaluate evaluate = new Evaluate();
+            evaluate.Input(input);
             string expected = evaluate.Result;
             string actual = evaluate.LastOut;
             Assert.AreEqual(expected, actual);

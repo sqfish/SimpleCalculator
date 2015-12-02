@@ -8,24 +8,13 @@ namespace Calculator
 {
     public class Stack
     {
-        private string lastIn;
-        private string lastOut;
+        public string LastIn { get; set; }
+        public string LastOut { get; set; }
 
-        public Stack(string input, string output)
+        public void Update(string input, string output)
         {
-            lastIn = input;
-            lastOut = output;
-        }
-
-        public string LastIn
-        {
-            get { return lastIn; }
-
-        }
-
-        public string LastOut
-        {
-            get { return lastOut; }
+            LastIn = input;
+            LastOut = output;
         }
     }
 }

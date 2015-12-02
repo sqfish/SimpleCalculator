@@ -10,8 +10,14 @@ namespace Calculator
 {
     public class Parse
     {
-        //private string _operators = @"(?!\d\b)(\+|-|*|/){1}";
-        public Regex _operators = new Regex(@"(?<=\b\d+\b\s*)[-+*/]");
+        private static Regex _operators = new Regex(@"(?<=\b\d+\b\s*)[-+*/]");
+        private static Regex invalidSign = new Regex(@"(?<!\d\s*)[-+]\s+\d");
+
+        private static Regex key = new Regex(@"[a-z|A-Z]{1}");
+        private static Regex equal = new Regex(@"[=]{1}");
+        private static Regex value = new Regex(@"[0-9]");
+        private static List<Regex> reqConstant = new List<Regex> { key, equal, value };
+
         public string Expression;
         public string[] Terms;
         public string Operator;
@@ -22,7 +28,6 @@ namespace Calculator
             {
                 throw new FormatException();
             }
-            string output = input.ToLower();
             Regex whitespace = new Regex(@"\s");
             Terms = _operators.Split(input);
             Terms[0] = whitespace.Replace(Terms[0], "");
@@ -43,5 +48,7 @@ namespace Calculator
             }
             return valid;
         }
+
+        
     }
 }

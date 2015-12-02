@@ -10,7 +10,10 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            //Console.ReadLine
+            int counter = 0;
+            string prompt = "[" + counter + "]> ";
+            Console.Write(prompt);
+            string input = Console.ReadLine();
         }
     }
 }

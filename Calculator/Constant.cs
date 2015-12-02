@@ -9,18 +9,11 @@ namespace Calculator
 {
     public class Constant
     {
-        private SortedDictionary<string, string> constants;
+        public SortedDictionary<string, string> constants { get; set; }
 
-        public Constant(string input)
-        {
-            if (!(constants != null))
-            {
-                constants = new SortedDictionary<string, string>();
-            }
-            if (ValidateInput(input))
-            {
-                StoreConstant(input);
-            }
+        public Constant()
+        { 
+            constants = new SortedDictionary<string, string>();
         }
 
         public string this[string key]
@@ -29,7 +22,7 @@ namespace Calculator
             set { StoreConstant(key + "=" + value); }
         }
 
-        private void StoreConstant(string input)
+        public void StoreConstant(string input)
         {
             string[] data = ParseInput(input);
             string key = data[0];
@@ -66,6 +59,6 @@ namespace Calculator
                 if (!valid) { return false; }
             }
             return valid;
-        }       
+        }
     }
 }
