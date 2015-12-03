@@ -10,6 +10,7 @@ namespace Calculator
 {
     public class Evaluate
     {
+        public int InputType { get; set; }
         public string Expression { get; set; }
         public string Result { get; set; }
         
@@ -28,21 +29,23 @@ namespace Calculator
             _stack = new Stack();
         }
 
-        public void Input(string input)
+        public int Input(string input)
         {
-            CheckInputType(input);  
+            CheckInputType(input);
+            return InputType;
         }
 
         public void CheckInputType(string input)
         {
             bool isConstantDefinition = equal.IsMatch(input);
-            bool isEvaluateExpression = operators.IsMatch(input);
             if (isConstantDefinition)
             {
+                InputType = 0;
                 _constant.StoreConstant(input);
             }
             else
             {
+                InputType = 1;
                 input = RetrieveConstant(input);
                 Parse data = new Parse();
                 data.ParseInput(input);
